@@ -12,7 +12,7 @@ docpadConfig = {
 		# Specify some site properties
 		site:
 			# The production url of our website
-			url: "http://website.com"
+			url: "http://unmonastery.org"
 
 			# Here are some old site urls that you would like to redirect from
 			oldUrls: [
@@ -21,23 +21,23 @@ docpadConfig = {
 			]
 
 			# The default title of our website
-			title: "Your Website"
+			title: "unMonastery BIOS"
 
 			# The website description (for SEO)
 			description: """
-				When your website appears in search results in say Google, the text here will be shown underneath your website's title.
+				The Process Map, part of the unMonastery BIOS toolkit.
 				"""
 
 			# The website keywords (for SEO) separated by commas
 			keywords: """
-				place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website
+				social innovation, urban development, urban planning, scoping, coliving, coworking, co-living, co-working, art, programming"
 				"""
 
 			# The website author's name
-			author: "Your Name"
+			author: "Kei Kreutler"
 
 			# The website author's email
-			email: "your@email.com"
+			email: "kei@ourmachine.net"
 
 			# Styles
 			styles: [
@@ -50,7 +50,9 @@ docpadConfig = {
 				"//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
 				"//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
 				"/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"
+				"//api.trello.com/1/client.js?key=31eb16d37ff9dea5bf8ec1b33e438a55"
 				"/scripts/script.js"
+				"/scripts/trello.js"
 			]
 
 
