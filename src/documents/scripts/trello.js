@@ -7,12 +7,14 @@ var $container = $("<div>")
  var $modalsDiv = $("<div>")
     .appendTo("#modals");
 
-var listNames = {};
+var cardNames = {};
 var $counter = 0;
 var $modalID;
 var $modalTarget;
 var $stageModal;
 var $modalBody, $modalDialog, $modalContent;
+var $token;
+var $columnLeft, $columnRight;
 
 // 54b56f71886fcc7bdc058779
 // 53c68ad5cd5e81637bc7db48
@@ -35,17 +37,21 @@ Trello.get("boards/54b56f71886fcc7bdc058779/lists?cards=open&attachments=true&at
 		    .text(list.name)
 		    .appendTo($modalHeader);
 		$.each(list.cards, function(ix, card) {
-			var $cardName = $("<h5>");
-	        $cardName.text(card.name)
-	        .appendTo($modalBody);
-			$('<p>')
-				.html(markdown.toHTML(card.desc))
-				.appendTo($modalBody);
-	        if(card.badges.attachments) {
-				var $cardAttach = $("<a>")
-				.text(card.name)
-		        .appendTo($modalBody);
-			};
+			cardNames[card.name] = card;
+			switch(card.name) {
+				case "Information Sheet":
+					$('<p>')
+						.html(markdown.toHTML(card.desc))
+						.appendTo($modalBody);
+						break;
+				default:
+					if(card.badges.attachments) {
+						var $cardAttach = $("<a>")
+						.text(card.name)
+						.appendTo($modalBody);
+					};
+			}
+
 		});
 		$counter++;
 		if($counter % 3 == 0) {

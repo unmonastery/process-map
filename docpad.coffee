@@ -49,8 +49,11 @@ docpadConfig = {
 			scripts: [
 				"//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
 				"//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
+				"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"
+				"//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"
+				"//cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js"
 				"/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"
-				"//api.trello.com/1/client.js?key=31eb16d37ff9dea5bf8ec1b33e438a55"
+				"//api.trello.com/1/client.js?key=31eb16d37ff9dea5bf8ec1b33e438a55&token=d46662643c552f32fde430f8f0f7105061ec9d55af458f0afa710e669a2be804"
 				"/vendor/markdown/markdown.js"
 				"/scripts/script.js"
 				"/scripts/trello.js"
