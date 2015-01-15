@@ -2,7 +2,10 @@
 var $container = $("<div>")
 	.addClass("row")
     .text("Loading Cards...")
-    .appendTo("#output");
+    .appendTo("#phases");
+
+ var $modalsDiv = $("<div>")
+    .appendTo("#modals");
 
 var listNames = {};
 var $counter = 0;
@@ -27,21 +30,7 @@ Trello.get("boards/54b56f71886fcc7bdc058779/lists?cards=open&attachments=true&at
 		    .attr("data-target", $modalTarget)
 		    .attr("data-toggle", "modal")
 		    .appendTo($level);
-		$stageModal = $('<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>')
-			.attr("id", $modalID)
-			.appendTo($container);
-		$modalDialog = $('<div>')
-			.addClass("modal-dialog")
-			.appendTo($stageModal);
-		$modalContent = $('<div>')
-			.addClass("modal-content")
-			.appendTo($modalDialog);
-		$modalHeader = $('<div>')
-			.addClass("modal-header")
-			.appendTo($modalContent);
-		$modalBody = $('<div>')
-			.addClass('modal-body')
-			.appendTo($modalContent);
+		$modalBody = createModals($modalID);
 		$("<h3>")
 		    .text(list.name)
 		    .appendTo($modalHeader);
@@ -62,22 +51,26 @@ Trello.get("boards/54b56f71886fcc7bdc058779/lists?cards=open&attachments=true&at
 		if($counter % 3 == 0) {
 			$container = $("<div>")
 			.addClass("row")
-		    .appendTo("#output");
+		    .appendTo("#phases");
 		}
 	});
 });
 
-var customModal = $('<div class="custom-modal modal hide fade" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal">Close</button></div></div>');
-
-$('.device').click(function(){
-    $('body').append(customModal);
-    $(this).find($('h3')).clone().appendTo('.custom-modal .modal-header');
-    $(this).find('.device-product, .device-details').clone().appendTo('.custom-modal .modal-body');
-    $('.custom-modal .hide').show();
-    $('.custom-modal').modal();
-  
-  	$('.custom-modal').on('hidden', function(){
- 		console.log("hidden");
-    	$('.custom-modal').remove();
-	});
-});
+function createModals(modalID){
+		$stageModal = $('<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>')
+			.attr("id", modalID)
+			.appendTo($modalsDiv);
+		$modalDialog = $('<div>')
+			.addClass("modal-dialog")
+			.appendTo($stageModal);
+		$modalContent = $('<div>')
+			.addClass("modal-content")
+			.appendTo($modalDialog);
+		$modalHeader = $('<div>')
+			.addClass("modal-header")
+			.appendTo($modalContent);
+		$modalBody = $('<div>')
+			.addClass('modal-body')
+			.appendTo($modalContent);
+		return $modalBody;
+}
