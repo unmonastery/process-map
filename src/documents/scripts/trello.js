@@ -39,7 +39,7 @@ Trello.get("boards/54b56f71886fcc7bdc058779/lists?cards=open&attachments=true&at
 	        $cardName.text(card.name)
 	        .appendTo($modalBody);
 			$('<p>')
-				.text(card.desc)
+				.html(markdown.toHTML(card.desc))
 				.appendTo($modalBody);
 	        if(card.badges.attachments) {
 				var $cardAttach = $("<a>")

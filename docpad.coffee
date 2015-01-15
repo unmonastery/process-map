@@ -51,6 +51,7 @@ docpadConfig = {
 				"//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
 				"/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"
 				"//api.trello.com/1/client.js?key=31eb16d37ff9dea5bf8ec1b33e438a55"
+				"/vendor/markdown/markdown.js"
 				"/scripts/script.js"
 				"/scripts/trello.js"
 			]
