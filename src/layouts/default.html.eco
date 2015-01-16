@@ -22,7 +22,6 @@
 	<meta name="viewport" content="width=device-width" />
 
 	<!-- Icons -->
-		<link rel="shortcut icon" href="images/icons/favicon.ico">
 		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/apple-touch-icon-144-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/apple-touch-icon-114-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/apple-touch-icon-72-precomposed.png">
@@ -36,32 +35,9 @@
 	<!-- Styles -->
 	<%- @getBlock('styles').add(@site.styles).toHTML() %>
 </head>
-<body>
-	<!-- Menu -->
-	<div class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">PROCESS MAP unMonastery</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-				
-				</ul>
-			</div><!--/.navbar-collapse -->
-		</div>
-	</div>
+<body id="page-top" class="index">
 
-	<!-- Content -->
-	<div class="container">
-		<!-- Content -->
-		<section id="content" class="content">
 			<%- @content %>
-		</section>
 
 		<!-- Footer -->
 		<footer>

@@ -1,82 +1,87 @@
 
-var $container = $("<div>")
-	.addClass("row")
-    .text("Loading Cards...")
-    .appendTo("#phases");
+var $referenceMap = $("<div>")
+    .appendTo("#reference-map");
 
- var $modalsDiv = $("<div>")
-    .appendTo("#modals");
-
-var cardNames = {};
 var $counter = 0;
-var $modalID;
-var $modalTarget;
-var $stageModal;
-var $modalBody, $modalDialog, $modalContent;
-var $token;
-var $columnLeft, $columnRight;
 
-// 54b56f71886fcc7bdc058779
-// 53c68ad5cd5e81637bc7db48
+var chapters = {};
+var listIds = [];
+var $color;
+
 Trello.get("boards/54b56f71886fcc7bdc058779/lists?cards=open&attachments=true&attachment_fields=name,url", function(lists) {
-	$container.empty();
 	$.each(lists, function(ix, list) {
-	    var $level = $("<div>")
-	    .addClass("col-sm-4")
-	    .appendTo($container);
-	    $modalID = list.id; // .replace(/ /g, "-").replace(/[^a-zA-Z0-9 -]/g, '').toLowerCase();
-	    $modalTarget = "#" + $modalID;
-	    var $levelName = $("<button>")
-		    .text(list.name)
-		    .addClass("btn btn-light")
-		    .attr("data-target", $modalTarget)
-		    .attr("data-toggle", "modal")
-		    .appendTo($level);
-		$modalBody = createModals($modalID);
-		$("<h3>")
-		    .text(list.name)
-		    .appendTo($modalHeader);
+		chapters[list.name] = list;
+		// Create chapter section 
+	    var $chapter = $("<section>")
+	    .addClass("chapter")
+	    .attr("id", list.id)
+	    .attr("name", list.id)
+	    .appendTo($referenceMap);
+	    // Create container for content
+	    var $container = $("<div>")
+	    	.addClass("container")
+		    .appendTo($chapter);
+	    // Create description area
+	    var $description = $("<div>")
+	    	.addClass("col-sm-8")
+		    .appendTo($container);
+	    // Create materials area
+	    var $materials = $("<div>")
+	    	.addClass("col-sm-4 list-group")
+		    .appendTo($container);
 		$.each(list.cards, function(ix, card) {
-			cardNames[card.name] = card;
 			switch(card.name) {
 				case "Information Sheet":
 					$('<p>')
 						.html(markdown.toHTML(card.desc))
-						.appendTo($modalBody);
-						break;
-				default:
-					if(card.badges.attachments) {
-						var $cardAttach = $("<a>")
+						.appendTo($description);
+					break;
+				case "Color":
+					$color = card.desc;
+					break;
+				/*default:
+					var $cardAttach = $("<a>")
+						.addClass("list-group-item")
 						.text(card.name)
-						.appendTo($modalBody);
-					};
+						.appendTo($materials);
+					break;*/
 			}
-
+			$.each(card.labels, function(ix, label) {
+				if(label.name === "MATERIAL") {
+					var $cardAttach = $("<a>")
+						.addClass("list-group-item")
+						.text(card.name)
+						.appendTo($materials);
+				}
+				else if(label.name === "CARD") {
+					var $cardAttach = $("<button>")
+						.addClass("btn-sm btn-other")
+						.text(card.name)
+						.appendTo($materials);					
+				}
+			});
 		});
-		$counter++;
-		if($counter % 3 == 0) {
-			$container = $("<div>")
-			.addClass("row")
-		    .appendTo("#phases");
-		}
+		var $footerId = "footer-" + list.id;
+		var $footer = $("<div>")
+			.css("background", $color)
+	    	.addClass("chapter-footer")
+	    	.attr("id", $footerId)
+		    .text(list.name)
+		    .appendTo($chapter);
+		listIds[ix] = list.id;
 	});
+	createLinks();
 });
 
-function createModals(modalID){
-		$stageModal = $('<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>')
-			.attr("id", modalID)
-			.appendTo($modalsDiv);
-		$modalDialog = $('<div>')
-			.addClass("modal-dialog")
-			.appendTo($stageModal);
-		$modalContent = $('<div>')
-			.addClass("modal-content")
-			.appendTo($modalDialog);
-		$modalHeader = $('<div>')
-			.addClass("modal-header")
-			.appendTo($modalContent);
-		$modalBody = $('<div>')
-			.addClass('modal-body')
-			.appendTo($modalContent);
-		return $modalBody;
-}
+function createLinks() {
+	$.each(listIds, function(ix, id) {
+		var $idHash = "#" + listIds[ix + 1];
+		var $footerId = "#footer-" + id;
+		var $next = $("<a>")
+			.attr("href", $idHash)
+			.addClass("page-scroll")
+			.text(">") // .html('<i class="fa fa-chevron-down"></i>')
+			.addClass("next-reference")
+			.appendTo($footerId);
+	});
+};

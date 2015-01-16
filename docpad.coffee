@@ -25,7 +25,7 @@ docpadConfig = {
 
 			# The website description (for SEO)
 			description: """
-				The Process Map, part of the unMonastery BIOS toolkit.
+				The Reference Map, part of the unMonastery BIOS toolkit.
 				"""
 
 			# The website keywords (for SEO) separated by commas
@@ -41,7 +41,9 @@ docpadConfig = {
 
 			# Styles
 			styles: [
+				"//fonts.googleapis.com/css?family=Montserrat:400,700"
 				"/styles/twitter-bootstrap.css"
+				"/styles/bootstrap.css"
 				"/styles/style.css"
 			]
 
@@ -53,8 +55,10 @@ docpadConfig = {
 				"//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"
 				"//cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js"
 				"/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"
+				"/scripts/easing.js"
 				"//api.trello.com/1/client.js?key=31eb16d37ff9dea5bf8ec1b33e438a55&token=d46662643c552f32fde430f8f0f7105061ec9d55af458f0afa710e669a2be804"
 				"/vendor/markdown/markdown.js"
+				"/scripts/scroll.js"
 				"/scripts/script.js"
 				"/scripts/trello.js"
 			]
